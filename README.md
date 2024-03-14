@@ -34,5 +34,16 @@
 * Going to initalise my repo and Java file. I don't think any unique packages (ones that I haven't used before) will be needed.
 * Need to plan out the data table/entity
 
+* So I toyed with the idea of using a separate entities and connecting them with a 1-1 relationship but this seems unneccesary. Hashmaps can achieve this functionality and seem to be safe. And also it's not like I'm going to be repeating the same postcodes or suburbs.
+
+#### ACHIEVED:
+* Initalised the project file with: Spring Boot DevTools, Spring Web & MySQL Driver
+* Initalised git repo and started this readme
+* I've decided to use hashmaps to store my data
+
+#### TOMORROW
+* Start fleshing out my API
+* Research into my implementation
+
 
 
