@@ -45,5 +45,12 @@
 * Start fleshing out my API
 * Research into my implementation
 
+### 15th March 2024
 
+* added Entity and new dependency (spring jpa)
+
+### 18th March 2024
+
+GOALS:
+* Controller & Service Layer
 
