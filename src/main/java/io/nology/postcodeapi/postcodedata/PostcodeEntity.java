@@ -17,10 +17,6 @@ import jakarta.persistence.TemporalType;
 @Table(name = "postcode_data")
 public class PostcodeEntity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
 	@Column
 	private Long postcode;
 	
@@ -47,9 +43,6 @@ public class PostcodeEntity {
 		updatedAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
 
 	public Long getPostcode() {
 		return postcode;
@@ -67,9 +60,6 @@ public class PostcodeEntity {
 		return updatedAt;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public void setPostcode(Long postcode) {
 		this.postcode = postcode;
