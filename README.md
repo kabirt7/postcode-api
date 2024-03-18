@@ -54,8 +54,17 @@
 * initialised Service, Controller, ModelMapping Config, Global Error Handler, Repo
 
 * Working through this has made me realise that using hashmaps is not a good idea. This is because it makes more sense to have each value (suburb and postcode) in the same table with their own Columns. I feel a bit silly that I didn't realise this straight away. I muddled the concept of different tables with one-to-one relationships and the relationships between Columns in the same table. Additionally, accessing hashmap keys from their values doesn't seem to be best practice even if the key & values are unique.
-* Silly mistake but I'm glad I realised this before fully implementing anything. I have affirmed a clearer understanding on relationships within and between tables.
+* Silly mistake but I'm glad I realised this before actually implementing anything. I have affirmed a clearer understanding on relationships within and between tables.
 
 * Writing the above paragraph has made me realise another issue. I was trying to implement this like my previous to-do assignmnent using ids. However, I have realised that this approach will not work as I will not know the id of the table row when searching for the postcode from the suburb and vice versa.
 * Therefore, I think I will need separate routes in the Controller for each search.
+
+**TOMORROW**
+
+- Finish fleshing out Controller - Separate functions for finding suburb and finding postcode
+- Service Layer - first complete without model mapper and then finish off with model mapper (for practice)
+- Implement Error Handling
+- Implement Model Mapper
+- Look into testing
+  
 
