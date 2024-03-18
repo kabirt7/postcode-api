@@ -49,6 +49,11 @@
 
 * added Entity and new dependency (spring jpa)
 
+* added Service, Controller, ModelMapping Config, Global Error Handler initialised, Repo
+* Working through this has made me realise that using hashmaps is not a good idea. This is because it makes more sense to have each value (suburb and postcode) in the same table with their own Columns. I feel a bit silly that I didn't realise this straight away. I muddled the concept of different tables with one-to-one relationships and the relationships between Columns in the same table. Additionally, accessing hashmap keys from their values doesn't seem to be best practice even if the key & values are unique.
+* Silly mistake but I'm glad I realised this before fully implementing anything. I have affirmed a clearer understanding on relationships within and between tables.
+
+
 ### 18th March 2024
 
 GOALS:
