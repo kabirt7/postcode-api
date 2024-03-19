@@ -66,5 +66,21 @@
 - Implement Error Handling
 - Implement Model Mapper
 - Look into testing
-  
+
+### 19th March 2024
+- I added functions to the Controller and Service layer to allow for POST and GET all functionality
+- It went well, I had a few small hiccups but see below for what not to do next time
+
+TO REMEMBER:
+- table name is specified in the Entity whereas the name of the DB is specified in application.properties
+- @NotBlank is only for Strings
+- One of the Columns must be designated with @Id
+- @PrePersist designates that the below function occurs automatically before the data is persisted into the DB
+- ResponseEntity -> DTO -> Entity for incoming requests
+- ResponseEntity <- DTO <- Entity for outgoing requests
+- think through nomenclature from the beginning to avoid having to fix it up
+
+**TOMORROW**
+- getSuburbNameFromPostcodeNumber Controller function with unique API
+- getPostcodeNumberFromSuburbName Controller funtion with unique API
 
