@@ -14,14 +14,14 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "postcode_data")
+@Table(name = "postcodeapi_data")
 public class PostcodeEntity {
+	@Id
+	@Column
+	private Long postcodeNumber;
 	
 	@Column
-	private Long postcode;
-	
-	@Column
-	private String suburb;
+	private String suburbName;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column (nullable = false, updatable = false)
@@ -44,12 +44,12 @@ public class PostcodeEntity {
 	}
 
 
-	public Long getPostcode() {
-		return postcode;
+	public Long getPostcodeNumber() {
+		return postcodeNumber;
 	}
 
-	public String getSuburb() {
-		return suburb;
+	public String getSuburbName() {
+		return suburbName;
 	}
 
 	public Date getCreatedAt() {
@@ -61,12 +61,12 @@ public class PostcodeEntity {
 	}
 
 
-	public void setPostcode(Long postcode) {
-		this.postcode = postcode;
+	public void setPostcodeNumber(Long postcodeNumber) {
+		this.postcodeNumber = postcodeNumber;
 	}
 
-	public void setSuburb(String suburb) {
-		this.suburb = suburb;
+	public void setSuburbName(String suburbName) {
+		this.suburbName = suburbName;
 	}
 
 	public void setCreatedAt(Date createdAt) {
