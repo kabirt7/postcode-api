@@ -17,7 +17,6 @@
 
 ## Design Goals / Approach
 * Building an API which stores a suburb's name and postcode number.
-* POST http://localhost:8080/postcode - Body must 
 
 ## Features
 * POST http://localhost:8080/postcode - Body must include a string, "suburbName", and a long, "postcodeNumber".
