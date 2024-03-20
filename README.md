@@ -21,7 +21,7 @@
 ## Features
 * POST http://localhost:8080/postcode - Body must include a string, "suburbName", and a long, "postcodeNumber".
 * GET http://localhost:8080/postcode - returns all stored data pairings
-* Each item also includes a createdAt and updatedAt Column. The former of which is automatically pre-persisted.
+* Each item also includes a createdAt and updatedAt Column. Automatically pre-persisted.
 
 ## Known issues
 
