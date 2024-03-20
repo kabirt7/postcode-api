@@ -2,6 +2,7 @@ package io.nology.postcodeapi.postcodedata;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,6 @@ public class PostcodeService {
 	@Autowired
 	private PostcodeRepository repo;
 	
-//	@Autowired 
-//	private ModelMapper mapper;
-	
-	// create pairing
-	
-	// get by postcodeNumber
-	
-	// get by suburbName
-	
 	
 	public PostcodeEntity createData(CreatePostcodePairDTO data) {
 		
@@ -38,6 +30,16 @@ public class PostcodeService {
 	
 	public List<PostcodeEntity> getAllData() {
 		return this.repo.findAll();
+	}
+	
+	public Optional<Integer> getPostcodebySuburb(String suburb) {
+	  Optional<PostcodeEntity> maybePostcodeEntity = repo.findBySuburbName(suburb);
+      return maybePostcodeEntity.map(PostcodeEntity::getPostcodeNumber);
+	}
+	
+	public Optional<String> getSuburbByPostcode(Integer postcode) {
+      Optional<PostcodeEntity> maybePostcodeEntity = repo.findByPostcodeNumber(postcode);
+      return maybePostcodeEntity.map(PostcodeEntity::getSuburbName);
 	}
 	
 	

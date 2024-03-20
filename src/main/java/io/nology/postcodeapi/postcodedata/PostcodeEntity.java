@@ -18,7 +18,7 @@ import jakarta.persistence.TemporalType;
 public class PostcodeEntity {
 	@Id
 	@Column
-	private Long postcodeNumber;
+	private Integer postcodeNumber;
 	
 	@Column
 	private String suburbName;
@@ -44,7 +44,7 @@ public class PostcodeEntity {
 	}
 
 
-	public Long getPostcodeNumber() {
+	public Integer getPostcodeNumber() {
 		return postcodeNumber;
 	}
 
@@ -61,7 +61,7 @@ public class PostcodeEntity {
 	}
 
 
-	public void setPostcodeNumber(Long postcodeNumber) {
+	public void setPostcodeNumber(Integer postcodeNumber) {
 		this.postcodeNumber = postcodeNumber;
 	}
 

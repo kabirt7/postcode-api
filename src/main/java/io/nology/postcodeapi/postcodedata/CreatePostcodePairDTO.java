@@ -4,12 +4,12 @@ import jakarta.validation.constraints.NotBlank;
 
 public class CreatePostcodePairDTO {
 	
-	private Long postcodeNumber;
+	private Integer postcodeNumber;
 	
 	@NotBlank
 	private String suburbName;
 
-	public Long getPostcodeNumber() {
+	public Integer getPostcodeNumber() {
 		return postcodeNumber;
 	}
 
