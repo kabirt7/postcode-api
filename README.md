@@ -90,3 +90,26 @@ TO REMEMBER:
 - getSuburbNameFromPostcodeNumber Controller function with unique API
 - getPostcodeNumberFromSuburbName Controller funtion with unique API
 
+### 20th March 2024
+- I have added the separate API paths for retrieving suburbs from postcodes and vice versa
+
+TO REMEBER:
+- You can configure inside the repository layer what methods you want to manipulate/read from it e.g.
+```java
+public interface PostcodeRepository extends JpaRepository<PostcodeEntity, Integer> {
+
+	Optional<PostcodeEntity> findBySuburbName(String suburbName);
+	Optional<PostcodeEntity> findByPostcodeNumber(Integer postcodeNumber);
+	
+}
+
+```
+- I haven't needed to use this in my previous java assignment as I was using the default findByID which doesn't need to be pre-configured. I'm now realising I could've used this for retrieving the suburb name from postcodeNumber (since postcodeNumber is Id) but I'm still happy which my config.
+- The usage of Optional means that the following Controller and Service layer methods will need to accept Optionals as well
+- '::' or the method reference operator is used to refer to methods without invoking them directly. In combination with '.map' this results in the below function returning an Optional<Ingeter> instead of an Optional<PostcodeEntity>
+```java
+public Optional<Integer> getPostcodebySuburb(String suburb) {
+	  Optional<PostcodeEntity> maybePostcodeEntity = repo.findBySuburbName(suburb);
+      return maybePostcodeEntity.map(PostcodeEntity::getPostcodeNumber);
+	}
+```
