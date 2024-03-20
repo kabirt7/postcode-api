@@ -113,3 +113,9 @@ public Optional<Integer> getPostcodebySuburb(String suburb) {
       return maybePostcodeEntity.map(PostcodeEntity::getPostcodeNumber);
 	}
 ```
+
+TO-DO:
+- testing
+- exception handling & logging
+- model mapping if needed
+
