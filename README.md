@@ -149,5 +149,13 @@ public class SmokeTest {
 }
 ```
 
+**TOMORROW**
+- finish testing module
+- implement tests - controller and service layer (if module doesnt clear this up then do further research into it)
+- implement exception handling using a glocal exception handler
+- plan out employee assignmnent
+- flesh out readmes and gifs for github profile
+- github bio
+- linkedin post graduation
 
 
