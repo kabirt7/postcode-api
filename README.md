@@ -120,10 +120,34 @@ TO-DO:
 
 ### 21st March 2024
 
-**Server-side vs Client-side tests**
-https://thepracticaldeveloper.com/guide-spring-boot-controller-tests/
+https://spring.io/guides/gs/testing-web#initial
 
-- "Client-side tests verify request composition and actions by mocking server behavior and examining requests sent from the client. They focus solely on confirming the request's occurrence and contents, disregarding the response. These tests are crucial for validating client application requests to external sources, despite limited official documentation and examples."
-- "We’ll focus on server-side Tests, which are the ones to verify how the server logic works. In this case, you normally mock the requests, and you want to check how your server logic reacts. These kind of tests are tightly related to the Controller layer in your application since it’s the part of Spring that takes care of handling the HTTP requests."
+TO-REMEMBER:
+- throws Excpetion just means a function can throw a checked exception
+- "Checked exceptions are those that must be either caught or declared to be thrown by a method using the throws clause. Unchecked exceptions, on the other hand, do not need to be declared using throws and are typically subclasses of RuntimeException."
+
+- testing is already initialised when making a Sprint Boot Application with SB Initalizr
+
+- an example of a basic 'smoke' test
+
+```java
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // prevents testing conflicts
+public class SmokeTest {
+	
+	@LocalServerPort
+	private int port;
+	// injects server
+
+	@Autowired
+	private TestRestTemplate restTemplate;
+	// automatic template
+	
+	@Test
+	void greetingShouldReturnDefaultMessage() throws Exception {
+		assertThat(this.restTemplate.getForObject("http://localhost:8080", String.class).contains("Hello, World"));
+	}
+}
+```
+
 
 
