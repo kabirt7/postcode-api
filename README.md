@@ -118,3 +118,12 @@ TO-DO:
 - exception handling & logging
 - model mapping if needed
 
+### 21st March 2024
+
+**Server-side vs Client-side tests**
+https://thepracticaldeveloper.com/guide-spring-boot-controller-tests/
+
+- "Client-side tests verify request composition and actions by mocking server behavior and examining requests sent from the client. They focus solely on confirming the request's occurrence and contents, disregarding the response. These tests are crucial for validating client application requests to external sources, despite limited official documentation and examples."
+- "We’ll focus on server-side Tests, which are the ones to verify how the server logic works. In this case, you normally mock the requests, and you want to check how your server logic reacts. These kind of tests are tightly related to the Controller layer in your application since it’s the part of Spring that takes care of handling the HTTP requests."
+
+
