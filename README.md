@@ -128,7 +128,7 @@ TO-REMEMBER:
 
 - testing is already initialised when making a Sprint Boot Application with SB Initalizr
 
-- an example of a basic 'smoke' test
+- an example of a basic 'smoke' test ("A "smoke test" is a type of software testing that focuses on quickly checking whether the basic functionality of a system or component works correctly.")
 
 ```java
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // prevents testing conflicts
