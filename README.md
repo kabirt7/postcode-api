@@ -158,4 +158,66 @@ public class SmokeTest {
 - github bio
 - linkedin post graduation
 
+### 22nd March 2024
+
+- "Another useful approach is to not start the server at all but to test only the layer below that, where Spring handles the incoming HTTP request and hands it off to your controller. That way, almost all of the full stack is used, and your code will be called in exactly the same way as if it were processing a real HTTP request but without the cost of starting the server."
+- > MockMvc < -
+```java
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class TestingWebApplicationTests {
+	
+	@Autowired
+	private MockMvc mockMvc;
+
+	@Test
+	void shouldReturnDefaultMessage() throws Exception {
+		
+		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+		.andExpect(content().string(containsString("Hello, World")));
+	}
+} 
+```
+- the imports for the functions on this.mockMvc didn't have options from Eclipse to add hence I'm leaving them there as a reference
+- in this test the full Spring Application Context is started but without the server
+
+- We can narrow it just the Web Layer (controller etc) by using @WebMvcTest
+```java
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(GreetingController.class)
+public class WebMockTest {
+	
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@MockBean
+	private GreetingService service;
+	
+	@Test
+	void greetingShouldReturnMessageFromService() throws Exception {
+		
+		when(service.greet()).thenReturn("Hello, Mock");
+		// this changes the service using Moquito such that it will do this instead of the normal service
+		
+		
+		this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
+		.andExpect(content().string(containsString("Hello, Mock")));
+	}
+}
+```
+- In this test will only test the Controller layer is instantiated
+- mockito service has its output changed from default to match the test
+
 
