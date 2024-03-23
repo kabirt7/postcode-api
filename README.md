@@ -220,4 +220,9 @@ public class WebMockTest {
 - In this test will only test the Controller layer is instantiated
 - mockito service has its output changed from default to match the test
 
+### 22nd March 2024
 
+Tests for post-code API
+- Smoke test - tests server and Spring Application Context
+- MockMvc test - tests Spring Application Context (including service layer)
+- WebMvc test - tests Controller/Web layer (not including service layer)
