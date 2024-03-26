@@ -228,3 +228,9 @@ Tests for post-code API
 - Smoke test - tests server and Spring Application Context
 - MockMvc test - tests Spring Application Context (including service layer)
 - WebMvc test - tests Controller/Web layer (not including service layer)
+
+### 26th March 2024
+- did a MockMvc test
+- still need to do a WebMvc and Smoke Test
+
+
