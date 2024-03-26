@@ -17,4 +17,10 @@ public class CreatePostcodePairDTO {
 		return suburbName;
 	}
 	
+    // only used for testing purposes
+	public CreatePostcodePairDTO(Integer postcodeNumber, String suburbName) {
+	    this.postcodeNumber = postcodeNumber;
+	    this.suburbName = suburbName;
+	}
+	
 }
