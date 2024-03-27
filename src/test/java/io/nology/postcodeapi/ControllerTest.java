@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(PostcodeController.class)
-public class WebMockTest {
+public class ControllerTest {
 	
 	private String asJsonString(final Object obj) {
 	    try {

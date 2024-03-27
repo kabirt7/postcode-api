@@ -1,13 +1,12 @@
 package io.nology.postcodeapi.postcodedata;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.nology.postcodeapi.exceptions.ServiceValidationException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -18,7 +17,7 @@ public class PostcodeService {
 	private PostcodeRepository repo;
 	
 	
-	public PostcodeEntity createData(CreatePostcodePairDTO data) {
+	public PostcodeEntity createData(CreatePostcodePairDTO data) throws ServiceValidationException{
 		
 		PostcodeEntity newPair = new PostcodeEntity();
 		
@@ -32,6 +31,7 @@ public class PostcodeService {
 		return this.repo.findAll();
 	}
 	
+	// I don't think these need explicit error handling (Optionals kind of already handle this)
 	public Optional<Integer> getPostcodebySuburb(String suburb) {
 	  Optional<PostcodeEntity> maybePostcodeEntity = repo.findBySuburbName(suburb);
       return maybePostcodeEntity.map(PostcodeEntity::getPostcodeNumber);
