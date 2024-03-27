@@ -230,7 +230,74 @@ Tests for post-code API
 - WebMvc test - tests Controller/Web layer (not including service layer)
 
 ### 26th March 2024
-- did a MockMvc test
-- still need to do a WebMvc and Smoke Test
+- added all 3 tests
 
+ERROR HANDLING:
+- don't need to throw an error if for example not finding any posts is a normal eventuality (for not founderrors)
 
+### 27th March 2024
+TO REMEMBER:
+- in Java a hash map can have mpl key-value pairs
+- 
+```java
+public class MyClass {
+    private int errors; // Instance variable
+    
+    public void myMethod() {
+        int errors = 0; // Local variable
+        
+        // Here, 'errors' refers to the local variable
+        System.out.println(errors); // Prints the value of local variable
+        
+        // Here, 'this.errors' refers to the instance variable
+        System.out.println(this.errors); // Prints the value of instance variable
+    }
+}
+```
+- 
+```java
+public class MyClass {
+    private HashMap<String, ArrayList<String>> errors; // Instance variable
+    
+    public MyClass(HashMap<String, ArrayList<String>> errors) {
+        this.errors = errors; // Assigning the value of local variable 'errors' to instance variable 'this.errors'
+    }
+}
+```
+- 
+```java
+private HashMap<String, ArrayList<String>>errors;
+	
+	public ValidationErrors() {
+	// this is assigned to the instance variable hence its of type HashMap<String, ArrayList<String>>
+		this.errors = new HashMap<>();
+	}
+```
+- in the above example, the private declaration doesn't directly instantiate the HashMap - it forms an outline of what type of HashMap is required for the class
+- the this.errors directly references this variable and instantiates it through 'new HashMap<>()'
+- this ensures that the class has the correct Hashmap empty and ready to go
+```java
+package io.nology.postcodeapi.exceptions;
+
+public class ServiceValidationException extends Exception {
+	
+	// this is needed for version control of serialised objects which this function
+	// is due to its implementation of the Exception class
+	private static final long serialVersionUID = 1L;
+	
+	private ValidationErrors errors;
+	
+	public ServiceValidationException(ValidationErrors errors) {
+		super();
+    // this class does not directly instantiate anything, it passes the errors as 
+	// a reference to the ValidationErrors class which will then be instantiated
+	// by the constructor class
+		this.errors = errors;
+	}
+	
+	public ValidationErrors getErrors() {
+		return errors;
+	}
+
+}
+```
