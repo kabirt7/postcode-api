@@ -288,6 +288,7 @@ public class ServiceValidationException extends Exception {
 	private ValidationErrors errors;
 	
 	public ServiceValidationException(ValidationErrors errors) {
+    // this instantiates the superclass Exception ensuring that necessary initialisation occurs
 		super();
     // this class does not directly instantiate anything, it passes the errors as 
 	// a reference to the ValidationErrors class which will then be instantiated
