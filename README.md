@@ -307,12 +307,16 @@ public class ServiceValidationException extends Exception {
 - added in specific Service layer testing and refined logic
 - learned that in tests where data is created, this data needs to be enclosed and removed within the same function
 - other tests dependending on using this created data is not good as it can cause them to malfunction
+  
 <br>
+
 - going to implement a front end this weekend, adding the planning diagrams to github now
 - it's going to be simple and have resuable components from my last project
 - the purpose of this is just to have a simple visualisation of my backend API
 - my next employee register project will feature a more unique design
+  
 <br>
+
 - furthermore, Calum made me aware of the existence of postcodes with multiple suburbs in it
 - I will need to implement a one-to-many relationship of postcodes to suburbs (even if this is not the norm)
 - Further research will need to happen before I implement this whether this necessitates a new package for the postcodes 
