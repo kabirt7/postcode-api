@@ -322,7 +322,7 @@ public class ServiceValidationException extends Exception {
 - Further research will need to happen before I implement this whether this necessitates a new package for the postcodes 
 
 ## 31st March
-- outline of Front-end is done
+- outline of Front-end is done. Re-used Button and Modal Components from the To-do project. Minimal changes were required. This increased workflow efficiency significantly.
 - Integrated in the Add Data Pair Logic
 - Added a WebConfig package and class in the backend to allow for CORS
 
