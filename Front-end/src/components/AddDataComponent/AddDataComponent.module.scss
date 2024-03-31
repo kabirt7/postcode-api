@@ -1,0 +1,9 @@
+.addData {
+  display: flex;
+  flex-direction: column;
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+}
