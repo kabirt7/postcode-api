@@ -320,3 +320,15 @@ public class ServiceValidationException extends Exception {
 - furthermore, Calum made me aware of the existence of postcodes with multiple suburbs in it
 - I will need to implement a one-to-many relationship of postcodes to suburbs (even if this is not the norm)
 - Further research will need to happen before I implement this whether this necessitates a new package for the postcodes 
+
+## 31st March
+- outline of Front-end is done
+- Integrated in the Add Data Pair Logic
+- Added a WebConfig package and class in the backend to allow for CORS
+
+TOMORROW:
+- add in context for toast notifications
+- add in functionality for the 2 search query components and the view all component
+- add in 1 to many relationship for postcodes in backend
+- fix service testing in backend
+- PROJECT COMPLETE
