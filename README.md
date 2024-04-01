@@ -332,3 +332,15 @@ TOMORROW:
 - add in 1 to many relationship for postcodes in backend
 - fix service testing in backend
 - PROJECT COMPLETE
+
+## 1st April
+- added in delete and view functionality in the View All component
+- styled it view overflow: scroll
+
+TO-DO:
+- toast notifs
+- find suburb
+- find postcode
+
+- one to many relationship
+- fix service testing 
