@@ -344,3 +344,11 @@ TO-DO:
 
 - one to many relationship
 - fix service testing 
+
+## 2nd April
+- combined the find suburb and find postcode components into 1 reusable component as well as the logic
+
+TO-DO:
+- one to many
+- toast notifs
+- service tests
