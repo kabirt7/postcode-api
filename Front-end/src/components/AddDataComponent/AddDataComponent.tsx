@@ -27,9 +27,10 @@ const AddDataComponent = ({ closeModal }: AddDataComponentProps) => {
 
   return (
     <form className={styles.addData} onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="Enter Suburb" {...register("suburbInput")} />
-      <input placeholder="Enter Postcode" {...register("postcodeInput")} />
-
+      <div className={styles.addData__inputs}>
+        <input placeholder="Enter Suburb" {...register("suburbInput")} />
+        <input placeholder="Enter Postcode" {...register("postcodeInput")} />
+      </div>
       <footer className={styles.addData__footer}>
         <button type="submit">
           <FontAwesomeIcon icon={faCheck} />

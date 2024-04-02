@@ -1,7 +1,19 @@
-import styles from "PostcodeDataItem.module.scss";
+import styles from "./PostcodeDataItem.module.scss";
 
-const PostcodeDataItem = () => {
-  return <div>PostcodeDataItem</div>;
+interface PostcodeDataItemProps {
+  postcode: Number;
+  suburb: string;
+}
+
+const PostcodeDataItem: React.FC<PostcodeDataItemProps> = ({
+  postcode,
+  suburb,
+}) => {
+  return (
+    <article className={styles.postcodeDataItem}>
+      <h3>{`${suburb}, ${postcode}`}</h3>
+    </article>
+  );
 };
 
 export default PostcodeDataItem;

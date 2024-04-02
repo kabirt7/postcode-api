@@ -1,5 +1,8 @@
 import AddDataComponent from "../AddDataComponent/AddDataComponent";
+import SearchComponent from "../FindPostcodeComponent/SearchComponent";
+import FindPostcodeComponent from "../FindPostcodeComponent/SearchComponent";
 import PortalButtons from "../PortalButtons/PortalButtons";
+import ViewDataComponent from "../ViewDataComponent/ViewDataComponent";
 import styles from "./Container.module.scss";
 import { useState } from "react";
 
@@ -13,6 +16,19 @@ const Container = () => {
   const addData = () => {
     setDisplayHandler("ADD");
   };
+
+  const findSuburb = () => {
+    setDisplayHandler("SUBURB");
+  };
+
+  const findPostcode = () => {
+    setDisplayHandler("POSTCODE");
+  };
+
+  const viewData = () => {
+    setDisplayHandler("VIEW");
+  };
+
   return (
     <div className={styles.container}>
       {!displayHandler && (
@@ -21,36 +37,30 @@ const Container = () => {
         </PortalButtons>
       )}
       {!displayHandler && (
-        <PortalButtons
-          shape={" "}
-          clickFunction={function (arg: any) {
-            throw new Error("Function not implemented.");
-          }}
-        >
+        <PortalButtons shape={" "} clickFunction={findSuburb}>
           Find Suburb Name
         </PortalButtons>
       )}
       {!displayHandler && (
-        <PortalButtons
-          shape={" "}
-          clickFunction={function (arg: any) {
-            throw new Error("Function not implemented.");
-          }}
-        >
+        <PortalButtons shape={" "} clickFunction={findPostcode}>
           Find Postcode Number
         </PortalButtons>
       )}
       {!displayHandler && (
-        <PortalButtons
-          shape={" "}
-          clickFunction={function (arg: any) {
-            throw new Error("Function not implemented.");
-          }}
-        >
+        <PortalButtons shape={" "} clickFunction={viewData}>
           View Postcode Data
         </PortalButtons>
       )}
       {displayHandler == "ADD" && <AddDataComponent closeModal={closeModal} />}
+      {displayHandler == "SUBURB" && (
+        <SearchComponent closeModal={closeModal} type={displayHandler} />
+      )}
+      {displayHandler == "POSTCODE" && (
+        <SearchComponent closeModal={closeModal} type={displayHandler} />
+      )}
+      {displayHandler == "VIEW" && (
+        <ViewDataComponent closeModal={closeModal} />
+      )}
     </div>
   );
 };

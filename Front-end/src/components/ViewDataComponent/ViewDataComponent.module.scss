@@ -1,0 +1,20 @@
+.viewData {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  overflow: scroll;
+
+  &__dataWrap {
+    display: flex;
+    align-items: center;
+    padding-left: 1vh;
+    padding-top: 1vh;
+  }
+
+  &__button {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+  }
+}

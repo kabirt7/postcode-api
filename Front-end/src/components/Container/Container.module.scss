@@ -1,9 +1,10 @@
 .container {
   border: 2px black solid;
-  width: 50vw;
+  width: 30vw;
   height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  border-radius: 8px;
 }
