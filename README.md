@@ -352,3 +352,34 @@ TO-DO:
 - one to many
 - toast notifs
 - service tests
+
+## 3rd April
+
+- Fixed back-end functionality allowing to persist Set<SuburbEntity> as suburbs in the body of the request
+```js
+{
+  "postcodeNumber": 221903,
+  "suburbs": [
+    {
+      "suburbName": "China"
+    },
+    {
+      "suburbName": "India"
+    }
+  ]
+}
+```
+- Almost done fixing up front-end to allow for this Typing change i.e. there can be many suburbs for one postcode
+
+TO REMEMBER:
+- Check mySQL for if the tables are correctly configured and persisted
+- Even if not making a new package, you still need separate repositories for separate entities
+- The parent entity needs to be persisted before persisting entities contained therein
+- Order is important! When deleting Postcode Entity from DB, need to delete the internal associated SuburbEntities first
+
+TMO:
+- Fix return Suburbs functionality
+- Fix typing in SearchComponent
+- Add Context
+- Flesh out ReadMe
+
