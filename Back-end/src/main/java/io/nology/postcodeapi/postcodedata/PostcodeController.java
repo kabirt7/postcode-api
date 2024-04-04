@@ -10,8 +10,12 @@ import io.nology.postcodeapi.exceptions.NotFoundException;
 import io.nology.postcodeapi.exceptions.ServiceValidationException;
 import io.nology.postcodeapi.exceptions.ValidationErrors;
 import jakarta.validation.Valid;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/postcode")
@@ -27,7 +31,6 @@ public class PostcodeController {
 
     @PostMapping
     public ResponseEntity<PostcodeEntity> createPair(@Valid @RequestBody CreatePostcodePairDTO data) throws ServiceValidationException {
-        
         Optional<PostcodeEntity> existingPostcodeOptional = repo.findById(data.getPostcodeNumber());
         
         if (existingPostcodeOptional.isPresent()) {
@@ -38,9 +41,15 @@ public class PostcodeController {
             throw new ServiceValidationException(errors);
         }
         
-        logger.info("Creating postcode pair with data: {}", data);
+        logger.info("Creating postcode pair with data: {}", data.getPostcodeNumber());
+//        logger.info("Creating postcode pair with data: {}", data.getSuburbsAsString());
+        
+        // Delegate creation to the service layer
         PostcodeEntity createdPair = this.postcodeService.createData(data);
+        
         logger.info("Postcode pair created: {}", createdPair);
+        // should i flat map this 
+        
         return new ResponseEntity<>(createdPair, HttpStatus.CREATED);
     }
 
@@ -67,13 +76,17 @@ public class PostcodeController {
     @GetMapping("/name/{postcodeNumber}")
     public ResponseEntity<String> getSuburbFromPostcode(@PathVariable Integer postcodeNumber) throws NotFoundException {
         logger.info("Getting suburb for postcode: {}", postcodeNumber);
-        Optional<String> maybeSuburbOptional = postcodeService.getSuburbByPostcode(postcodeNumber);
-        String foundSuburb = maybeSuburbOptional.orElseThrow(() -> {
+        Optional<List<String>> maybeSuburbOptional = postcodeService.getSuburbsByPostcode(postcodeNumber);
+        List<String> foundSuburb = maybeSuburbOptional.orElseThrow(() -> {
             logger.error("Suburb not found for postcode: {}", postcodeNumber);
             return new NotFoundException(postcodeNumber);
         });
         logger.info("Found suburb {} for postcode: {}", foundSuburb, postcodeNumber);
-        return new ResponseEntity<>(foundSuburb, HttpStatus.OK);
+        
+        String suburbString = foundSuburb.stream()
+                                        .collect(Collectors.joining(", ", foundSuburb.get(0), foundSuburb.get(foundSuburb.size() - 1)));
+        
+        return ResponseEntity.ok(suburbString);
     }
 
     @DeleteMapping("/{id}")

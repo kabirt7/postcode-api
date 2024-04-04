@@ -4,7 +4,7 @@ import { deleteData, getAllData } from "../../services/logic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { PostcodeDataPair } from "../../services/interfaces";
-import PostcodeDataItem from "../PostcodeDataItem.jsx/PostcodeDataItem";
+import PostcodeDataItem from "../PostcodeItem.jsx/PostcodeDataItem";
 
 interface ViewDataComponentProps {
   closeModal: React.MouseEventHandler<HTMLButtonElement>;
@@ -25,6 +25,14 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
     }
   };
 
+  const convertToString = (data: any) => {
+    if (data.suburbs && data.suburbs.length > 0) {
+      return data.suburbs.map((item: any) => item.suburbName).join(", ");
+    } else {
+      return "";
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,7 +44,7 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
       }
     };
     fetchData();
-  }, [handleDeleteData]);
+  }, []);
 
   return (
     <>
@@ -54,7 +62,7 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
               <PostcodeDataItem
                 key={index}
                 postcode={item.postcodeNumber}
-                suburb={item.suburbName}
+                suburb={convertToString(item)}
               />
             </div>
           ))}
@@ -71,3 +79,6 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
 };
 
 export default ViewDataComponent;
+function typeOf(returnString: string): any {
+  throw new Error("Function not implemented.");
+}

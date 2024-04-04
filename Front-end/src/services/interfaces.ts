@@ -1,6 +1,12 @@
+export interface Suburb {
+  id: Number;
+  suburbName: string;
+  postcode: Number;
+}
+
 export interface PostcodeDataPair {
   postcodeNumber: number;
-  suburbName: string;
-  createdAt?: String;
-  updatedAt?: String;
+  suburbs: Suburb[];
+  createdAt?: string;
+  updatedAt?: string;
 }

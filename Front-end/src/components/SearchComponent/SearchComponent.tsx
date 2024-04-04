@@ -1,6 +1,6 @@
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./FindPostcodeComponent.module.scss";
+import styles from "./SearchComponent.module.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -13,8 +13,8 @@ interface FindPostcodeComponentProps {
 }
 
 interface PostcodeData {
-  postcodeNum: String;
-  suburb: String;
+  postcodeNum: string | undefined;
+  suburb: string;
 }
 
 const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
@@ -33,7 +33,7 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
   });
 
   const placeholderValue =
-    type === "POSTCODE" ? "Enter Postcode" : "Enter Suburb";
+    type === "POSTCODE" ? "Enter Suburb" : "Enter Postcode";
 
   function capitalizeFirstLetter(data: string): string {
     return data.charAt(0).toUpperCase() + data.slice(1);
@@ -41,21 +41,21 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
 
   const alertPostcode = () => {
     if (returnValue !== null && typeof returnValue === "object") {
-      const { postcodeNum } = returnValue;
+      const { postcodeNum, suburb } = returnValue;
       if (type == "POSTCODE") {
-        alert(`The postcode of ${returnValue.suburb} is ${postcodeNum}`);
+        alert(`The postcode of ${suburb} is ${postcodeNum}`);
       }
       if (type == "SUBURB") {
-        alert(
-          `The suburb with the postcode of ${postcodeNum} is ${returnValue.suburb}`
-        );
+        console.log(postcodeNum);
+        console.log(suburb);
+        alert(`The suburb(s) with the postcode of ${suburb} is ${postcodeNum}`);
       }
     } else {
       alert("No postcode available.");
     }
   };
 
-  const onSubmit = async (data: { input: string }) => {
+  const onSubmit = async (data: { input: string | number }) => {
     try {
       if (type == "POSTCODE") {
         const postcode = await getPostcodeOrSuburb("POSTCODE", data.input);
@@ -64,9 +64,9 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
       }
 
       if (type == "SUBURB") {
-        const postcode = await getPostcodeOrSuburb("SUBURB", data.input);
-        console.log(postcode);
-        setReturnValue({ postcodeNum: data.input, suburb: data.input });
+        const suburb = await getPostcodeOrSuburb("SUBURB", data.input);
+        console.log(suburb);
+        setReturnValue({ suburb: suburb, postcodeNum: data.input });
       }
     } catch (error: any) {
       console.log(error);
