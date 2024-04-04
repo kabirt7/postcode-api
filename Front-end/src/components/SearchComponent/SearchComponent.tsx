@@ -13,12 +13,14 @@ interface FindPostcodeComponentProps {
 }
 
 interface PostcodeData {
-  postcodeNum: string | undefined;
+  postcodeNum: number;
   suburb: string;
 }
 
 const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
-  const [returnValue, setReturnValue] = useState<PostcodeData | null>(null);
+  const [returnValue, setReturnValue] = useState<Array<
+    string | number | undefined
+  > | null>(null);
 
   const schema = z.object({
     input: z.string().min(3),
@@ -41,14 +43,15 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
 
   const alertPostcode = () => {
     if (returnValue !== null && typeof returnValue === "object") {
-      const { postcodeNum, suburb } = returnValue;
       if (type == "POSTCODE") {
-        alert(`The postcode of ${suburb} is ${postcodeNum}`);
+        alert(
+          `The suburb with the postcode of ${returnValue[1]} is ${returnValue[0]}`
+        );
       }
       if (type == "SUBURB") {
-        console.log(postcodeNum);
-        console.log(suburb);
-        alert(`The suburb(s) with the postcode of ${suburb} is ${postcodeNum}`);
+        alert(
+          `The suburb(s) with the postcode of ${returnValue[1]} is/are: ${returnValue[0]}`
+        );
       }
     } else {
       alert("No postcode available.");
@@ -60,13 +63,13 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
       if (type == "POSTCODE") {
         const postcode = await getPostcodeOrSuburb("POSTCODE", data.input);
         console.log(postcode);
-        setReturnValue({ postcodeNum: postcode, suburb: data.input });
+        setReturnValue([data.input, postcode]);
       }
 
       if (type == "SUBURB") {
         const suburb = await getPostcodeOrSuburb("SUBURB", data.input);
         console.log(suburb);
-        setReturnValue({ suburb: suburb, postcodeNum: data.input });
+        setReturnValue([suburb, data.input]);
       }
     } catch (error: any) {
       console.log(error);

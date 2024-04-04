@@ -44,11 +44,9 @@ public class PostcodeController {
         logger.info("Creating postcode pair with data: {}", data.getPostcodeNumber());
 //        logger.info("Creating postcode pair with data: {}", data.getSuburbsAsString());
         
-        // Delegate creation to the service layer
         PostcodeEntity createdPair = this.postcodeService.createData(data);
         
         logger.info("Postcode pair created: {}", createdPair);
-        // should i flat map this 
         
         return new ResponseEntity<>(createdPair, HttpStatus.CREATED);
     }
@@ -83,8 +81,7 @@ public class PostcodeController {
         });
         logger.info("Found suburb {} for postcode: {}", foundSuburb, postcodeNumber);
         
-        String suburbString = foundSuburb.stream()
-                                        .collect(Collectors.joining(", ", foundSuburb.get(0), foundSuburb.get(foundSuburb.size() - 1)));
+        String suburbString = String.join(", ", foundSuburb);
         
         return ResponseEntity.ok(suburbString);
     }
