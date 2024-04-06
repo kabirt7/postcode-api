@@ -383,3 +383,13 @@ TMO:
 - Add Context
 - Flesh out ReadMe
 
+## 6th April
+- fixed Zod error handling when submitting a new data pair. It now shows a custom error message if numbers or letters are inputted.
+- Fixed some styling on Toast Notifications.
+- Added a new custom Validator for suburbs Set in SB. It now will not accept an input if the suburbName property of the Suburb Entities inside contain numerals.
+- Fixed how the View Modal functionality handles when a Postcode pair is deleted. Added this into the toast notifications.
+
+TMO:
+- fix testing and overview to make sure code is production ready.
+- Finish fleshing out README with a demo.
+
