@@ -388,8 +388,9 @@ TMO:
 - Fixed some styling on Toast Notifications.
 - Added a new custom Validator for suburbs Set in SB. It now will not accept an input if the suburbName property of the Suburb Entities inside contain numerals.
 - Fixed how the View Modal functionality handles when a Postcode pair is deleted. Added this into the toast notifications.
+- fixed testing and overview to make sure code is production ready.
 
 TMO:
-- fix testing and overview to make sure code is production ready.
 - Finish fleshing out README with a demo.
+
 
