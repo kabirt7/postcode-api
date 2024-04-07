@@ -19,18 +19,40 @@
 * Building an API which stores a suburb's name and postcode number.
 
 ## Features
-* POST http://localhost:8080/postcode - Body must include a string, "suburbName", and a long, "postcodeNumber".
+* POST http://localhost:8080/postcode - Body must include and an Integer, "postcodeNumber" and an array, suburbs, with objects contained within for each suburb:
+```java
+"suburbs": [
+    {
+      "suburbName": "Hillarys"
+    },
+    {
+      "suburbName": "Sorrento"
+    }
+  ]
+```
 * GET http://localhost:8080/postcode - returns all stored data pairings
 * GET http://localhost:8080/postcode/number/{suburbName} - return post-code number from suburb name
 * GET http://localhost:8080/postcode/name/{postcodeNumber} - return suburb name from post-code number
 * Each item also includes a createdAt and updatedAt Column. Automatically pre-persisted.
 
-## Known issues
+* A custom validator has been constructed for the suburbs field in the DTO
+* A smoke test, Service Layer (ServiceTest) test and a Controller layer test (TestingWebApplicationTest). All are closed with any data created, removed as the test is run.
+* The postcode and suburbs have a One-to-Many relationship
+* The suburbs field contains a Set<SuburbEntity>. The SuburbEntity has its own Entity and Repository and includes a postcode field.
+* The id of the PostcodeEntity is correlated to the Postcode Number.
 
-## Future Goals
-* make a PATCH function to update rows
+* The front-end features extensive zod error handling to ensure that integers are passed into postcode and letters (or hyphens etc) into suburbs. The errors thrown are displayed in Toast Notifications.
+* View all current postcodes in the database from the 'view' tab. You can also delete entries from the database through buttons on each List Item.
+* Add a new postcode / suburbs data pair into from the 'add' tab. You are able to enter multiple suburbs by separating them by a comma.
+* Return either the suburbs associated with a postcode or vice versa through their respective tabs 
+
+## Known issues / Future Goals
+* Might separate the SuburbEntity, custom validator and Repository into its own package - makes the API more readable.
+* Might make a uniquely generated ID for the PostcodeEntity if it's not best practice to use the postcode itself as the ID.
 
 ## Struggles
+* The testing was very new to me. I used this website `https://spring.io/guides/gs/testing-web#initial` to determine which tests would be necessary and why
+* I initially confused which relationships would be necessary. Changing the relationship from One-to-One to One-to-Many was new to me and required further research and understanding about how the API should be structured. Please look through the 'Change Log' below if you would like further details :)
 
 ## LOG
 
@@ -41,7 +63,7 @@
 * Going to initalise my repo and Java file. I don't think any unique packages (ones that I haven't used before) will be needed.
 * Need to plan out the data table/entity
 
-* So I toyed with the idea of using a separate entities and connecting them with a 1-1 relationship but this seems unneccesary. Hashmaps can achieve this functionality and seem to be safe. And also it's not like I'm going to be repeating the same postcodes or suburbs.
+* I'm going to use a 1-1 relationship
 
 #### ACHIEVED:
 * Initalised the project file with: Spring Boot DevTools, Spring Web & MySQL Driver
@@ -60,11 +82,8 @@
 
 * initialised Service, Controller, ModelMapping Config, Global Error Handler, Repo
 
-* Starting this has made me realise that using hashmaps is not a good idea. This is because it makes more sense to have each value (suburb and postcode) in the same table with their own Columns. I feel a bit silly that I didn't realise this straight away. I muddled the concept of different tables with one-to-one relationships and the relationships between Columns in the same table. Additionally, accessing hashmap keys from their values doesn't seem to be best practice even if the key & values are unique.
-* Silly mistake but I'm glad I realised this before actually implementing anything. I have affirmed a clearer understanding on relationships within and between tables.
-
-* Writing the above paragraph has made me realise another issue. I was trying to implement this like my previous to-do assignmnent using ids. However, I have realised that this approach will not work as I will not know the id of the table row when searching for the postcode from the suburb and vice versa.
-* Therefore, I think I will need separate routes in the Controller for each search.
+* In my previous to-do assignmnent I have used ids to find items. However, I won't necessarily know the IDs when searching through the repo for data - this will change the way I get the data from the repo. 
+* I am going to use different routes in how I structure returning the postcode and suburb respectively.
 
 **TOMORROW**
 
