@@ -1,5 +1,7 @@
 # postcode-api
 
+![demo of project](demo.gif)
+
 ## Requirements / Purpose
 
 * Consolidate my Java back-end knowledge
@@ -30,17 +32,20 @@
     }
   ]
 ```
+API Calls:
 * GET http://localhost:8080/postcode - returns all stored data pairings
 * GET http://localhost:8080/postcode/number/{suburbName} - return post-code number from suburb name
 * GET http://localhost:8080/postcode/name/{postcodeNumber} - return suburb name from post-code number
 * Each item also includes a createdAt and updatedAt Column. Automatically pre-persisted.
 
+Back-end 
 * A custom validator has been constructed for the suburbs field in the DTO
 * A smoke test, Service Layer (ServiceTest) test and a Controller layer test (TestingWebApplicationTest). All are closed with any data created, removed as the test is run.
 * The postcode and suburbs have a One-to-Many relationship
 * The suburbs field contains a Set<SuburbEntity>. The SuburbEntity has its own Entity and Repository and includes a postcode field.
 * The id of the PostcodeEntity is correlated to the Postcode Number.
 
+Front-end
 * The front-end features extensive zod error handling to ensure that integers are passed into postcode and letters (or hyphens etc) into suburbs. The errors thrown are displayed in Toast Notifications.
 * View all current postcodes in the database from the 'view' tab. You can also delete entries from the database through buttons on each List Item.
 * Add a new postcode / suburbs data pair into from the 'add' tab. You are able to enter multiple suburbs by separating them by a comma.
