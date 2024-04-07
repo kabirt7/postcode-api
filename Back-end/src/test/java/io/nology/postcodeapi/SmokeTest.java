@@ -3,6 +3,9 @@ package io.nology.postcodeapi;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 
 import io.nology.postcodeapi.postcodedata.CreatePostcodePairDTO;
 import io.nology.postcodeapi.postcodedata.PostcodeEntity;
+import io.nology.postcodeapi.postcodedata.SuburbEntity;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SmokeTest {
@@ -26,8 +30,14 @@ public class SmokeTest {
 	
     @Test
     void postShouldReturnCreatedResponse() throws Exception {
+    	
+    	Set<SuburbEntity> suburbs = new HashSet<>();
+    	SuburbEntity testSuburb = new SuburbEntity();
+    	testSuburb.setSuburbName("Hillarys");
+    	
+    	suburbs.add(testSuburb);
 
-        CreatePostcodePairDTO testData = new CreatePostcodePairDTO(12345, "Test Suburb");
+        CreatePostcodePairDTO testData = new CreatePostcodePairDTO(12345, suburbs);
         
         ResponseEntity<PostcodeEntity> response = restTemplate.postForEntity("http://localhost:" + port + "/postcode", testData, PostcodeEntity.class);
 

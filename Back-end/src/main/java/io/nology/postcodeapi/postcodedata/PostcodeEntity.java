@@ -41,6 +41,11 @@ public class PostcodeEntity {
         updatedAt = timestamp;
     }
 	
+	@Override
+	public String toString() {
+		return "[suburbs=" + suburbs + "]";
+	}
+
 	@PreUpdate
 	public void onUpdate() {
 		updatedAt = new Date();

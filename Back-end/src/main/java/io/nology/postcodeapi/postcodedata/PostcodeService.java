@@ -44,7 +44,7 @@ public class PostcodeService {
 
             SuburbEntity newSuburb = new SuburbEntity();
 
-            // Assuming suburb.getSuburbName() returns the correct value
+
             String suburbName = suburb.getSuburbName();
             logger.info("Suburb name extracted: {}", suburbName);
 

@@ -4,17 +4,13 @@ import styles from "./SearchComponent.module.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getPostcodeOrSuburb } from "../../services/logic";
+import { ToastContext } from "../../context/ToastContext";
 
 interface FindPostcodeComponentProps {
   closeModal: React.MouseEventHandler<HTMLButtonElement>;
   type: String;
-}
-
-interface PostcodeData {
-  postcodeNum: number;
-  suburb: string;
 }
 
 const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
@@ -23,8 +19,21 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
   > | null>(null);
 
   const schema = z.object({
-    input: z.string().min(3),
+    input:
+      type === "POSTCODE"
+        ? z
+            .string()
+            .min(3, { message: "Suburb must contain at least 3 characters" })
+            .regex(/^[A-Za-z\s,-]+$/, {
+              message: "Suburb must contain only letters or commas",
+            })
+        : z
+            .string()
+            .min(3, { message: "Postcode must contain at least 3 characters" })
+            .regex(/^\d+$/, { message: "Postcode must contain only numbers" }),
   });
+
+  const { setMessage } = useContext(ToastContext);
 
   const {
     handleSubmit,
@@ -73,11 +82,17 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
       }
     } catch (error: any) {
       console.log(error);
+      const errorMessage = error.message || "Not found";
+      setMessage(errorMessage);
     }
   };
 
   useEffect(() => {
     console.log(errors);
+    if (errors.input?.message) {
+      const errorMessage = errors.input.message;
+      setMessage(errorMessage);
+    }
   }, [errors]);
 
   useEffect(() => {

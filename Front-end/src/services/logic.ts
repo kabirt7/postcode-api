@@ -3,21 +3,18 @@ import { PostcodeDataPair, Suburb } from "./interfaces.ts";
 const API_URL = "http://localhost:8080/postcode";
 
 const apostropheStringToList = (input: string) => {
-  // Split the input string by commas and trim whitespaces from each item
   return input.split(",").map((item) => item.trim());
 };
 
 export const addData = async (
-  postcode: number,
+  postcode: string,
   suburb: string
 ): Promise<PostcodeDataPair> => {
   try {
-    // Convert suburb string to an array of suburbs
     const suburbs = apostropheStringToList(suburb).map((suburbName) => ({
       suburbName: suburbName,
     }));
 
-    // Make a POST request with the suburbs array and postcode
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -30,8 +27,7 @@ export const addData = async (
     });
 
     if (!response.ok) {
-      const errorMessage = `Failed to add item. Status: ${response.status} ${response.statusText}`;
-      console.error(errorMessage);
+      const errorMessage = `Failed to add item`;
       throw new Error(errorMessage);
     }
 

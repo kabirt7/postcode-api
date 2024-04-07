@@ -25,7 +25,6 @@ public class SuburbEntity {
     @JsonIgnore // Ignore postcode to prevent circular serialization
     private PostcodeEntity postcode;
     
-    // Constructors, getters, setters, and lifecycle callbacks...
     
     public SuburbEntity() {
     	

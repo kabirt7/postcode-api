@@ -3,6 +3,10 @@ package io.nology.postcodeapi;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,6 +22,8 @@ import io.nology.postcodeapi.postcodedata.CreatePostcodePairDTO;
 import io.nology.postcodeapi.postcodedata.PostcodeController;
 import io.nology.postcodeapi.postcodedata.PostcodeEntity;
 import io.nology.postcodeapi.postcodedata.PostcodeService;
+import io.nology.postcodeapi.postcodedata.SuburbEntity;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -45,19 +51,25 @@ public class TestingWebApplicationTests {
         when(service.createData(any(CreatePostcodePairDTO.class)))
             .thenAnswer(invocation -> {
                 CreatePostcodePairDTO dto = invocation.getArgument(0);
+                
                 PostcodeEntity entity = new PostcodeEntity();
                 entity.setPostcodeNumber(dto.getPostcodeNumber());
-                entity.setSuburbName(dto.getSuburbName());
+                entity.setSuburbs(dto.getSuburbs());
                 return entity;
             });
         
-        CreatePostcodePairDTO postcodeDto = new CreatePostcodePairDTO(6025, "Hillarys");
+        Set<SuburbEntity> suburbs = new HashSet<>();
+        SuburbEntity testSuburb = new SuburbEntity();
+        testSuburb.setSuburbName("Test");
+        suburbs.add(testSuburb);
+        
+        CreatePostcodePairDTO postcodeDto = new CreatePostcodePairDTO(6025, suburbs);
         
         mockMvc.perform(post("/postcode")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(postcodeDto)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.postcodeNumber", equalTo(6025)))
-                .andExpect(jsonPath("$.suburbName", equalTo("Hillarys")));
+                .andExpect(jsonPath("$.suburbs[0].suburbName", equalTo("Test")));
     }
 }

@@ -1,10 +1,11 @@
 import styles from "./ViewDataComponent.module.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { deleteData, getAllData } from "../../services/logic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { PostcodeDataPair } from "../../services/interfaces";
 import PostcodeDataItem from "../PostcodeItem.jsx/PostcodeDataItem";
+import { ToastContext } from "../../context/ToastContext";
 
 interface ViewDataComponentProps {
   closeModal: React.MouseEventHandler<HTMLButtonElement>;
@@ -17,11 +18,18 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
     null
   );
 
+  const { message, setMessage } = useContext(ToastContext);
+
   const handleDeleteData = async (postcode: Number) => {
     try {
-      await deleteData(postcode);
+      const response = await deleteData(postcode);
+      fetchData();
+      if (response == null) {
+        setMessage("Data deleted successfully");
+      }
     } catch (error) {
       console.log(error);
+      setMessage(error);
     }
   };
 
@@ -33,16 +41,19 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
     }
   };
 
+  const fetchData = async () => {
+    try {
+      const data: PostcodeDataPair[] = await getAllData();
+      setPostcodeItems(data);
+      console.log(data);
+    } catch (error: any) {
+      console.log(error);
+      const errorMessage = error.message || "An error occurred";
+      setMessage(errorMessage);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data: PostcodeDataPair[] = await getAllData();
-        setPostcodeItems(data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchData();
   }, []);
 
@@ -55,7 +66,9 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
               <button
                 type="button"
                 className={styles.viewData__delete}
-                onClick={() => handleDeleteData(item.postcodeNumber)}
+                onClick={() => {
+                  handleDeleteData(item.postcodeNumber);
+                }}
               >
                 <FontAwesomeIcon icon={faTrashCan} />
               </button>
@@ -79,6 +92,3 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
 };
 
 export default ViewDataComponent;
-function typeOf(returnString: string): any {
-  throw new Error("Function not implemented.");
-}
