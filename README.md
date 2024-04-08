@@ -19,6 +19,8 @@
 
 ## Design Goals / Approach
 * Building an API which stores a suburb's name and postcode number.
+* My first back-end that features a One-to-Many relationship.
+* Logical back-end structure with basic front-end
 
 ## Features
 * POST http://localhost:8080/postcode - Body must include and an Integer, "postcodeNumber" and an array, suburbs, with objects contained within for each suburb:
@@ -54,7 +56,7 @@ Front-end
 ## Known issues / Future Goals
 * Might separate the SuburbEntity, custom validator and Repository into its own package - makes the API more readable.
 * Might make a uniquely generated ID for the PostcodeEntity if it's not best practice to use the postcode itself as the ID.
-* Make the Front-end styling a big less bare
+* Make the Front-end styling a bit less bare
 
 ## Struggles
 * The testing was very new to me. I used this website `https://spring.io/guides/gs/testing-web#initial` to determine which tests would be necessary and why
