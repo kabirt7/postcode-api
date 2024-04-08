@@ -1,0 +1,35 @@
+.addData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  gap: 4vh;
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+
+    input {
+      width: 15vw;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      font-weight: 500;
+      background-color: rgb(237, 237, 237);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    gap: 2.5vh;
+
+    button:nth-child(2) {
+      position: absolute;
+      right: 1vw;
+      top: 1vw;
+    }
+  }
+}
