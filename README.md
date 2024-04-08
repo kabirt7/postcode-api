@@ -71,7 +71,6 @@ Front-end
 
 ### 14th March 2024
 
-* My first thought is that I'll be using hash maps to pair up the suburb names with the postcodes
 * I'm iffy on Java testing so this will be a focus for me
 * Going to initalise my repo and Java file. I don't think any unique packages (ones that I haven't used before) will be needed.
 * Need to plan out the data table/entity
