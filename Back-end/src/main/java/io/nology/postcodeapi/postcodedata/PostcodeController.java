@@ -42,8 +42,7 @@ public class PostcodeController {
         }
         
         logger.info("Creating postcode pair with data: {}", data.getPostcodeNumber());
-//        logger.info("Creating postcode pair with data: {}", data.getSuburbsAsString());
-        
+
         PostcodeEntity createdPair = this.postcodeService.createData(data);
         
         logger.info("Postcode pair created: {}", createdPair);

@@ -44,7 +44,7 @@ const SearchComponent = ({ closeModal, type }: FindPostcodeComponentProps) => {
   });
 
   const placeholderValue =
-    type === "POSTCODE" ? "Enter Suburb" : "Enter Postcode";
+    type === "POSTCODE" ? "Suburb(s) e.g. Kew, Kent" : "Postcode e.g. 1842";
 
   function capitalizeFirstLetter(data: string): string {
     return data.charAt(0).toUpperCase() + data.slice(1);
