@@ -17,6 +17,11 @@
 
 ## Build Steps
 
+- Back-end API port: 8080
+- Front-end port: 5173
+- Database:  port 3306/postcodeapi
+- Table names: postcodeapi_data and suburb
+
 ## Design Goals / Approach
 * Building an API which stores a suburb's name and postcode number.
 * My first back-end that features a One-to-Many relationship.
