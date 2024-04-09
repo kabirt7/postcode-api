@@ -59,8 +59,16 @@ Front-end
 * Return either the suburbs associated with a postcode or vice versa through their respective tabs 
 
 ## Known issues / Future Goals
-* Might separate the SuburbEntity, custom validator and Repository into its own package - makes the API more readable.
-* Might make a uniquely generated ID for the PostcodeEntity if it's not best practice to use the postcode itself as the ID.
+* the Rest API URL nomenclature is incorrect for what it is. Needs to be
+```
+GET /postcode?suburb=(name}
+```
+- the way it is currently configured e.g.
+```
+GET http://localhost:8080/postcode/number/{suburbName}
+```
+- assumes suburbName is a property under postcode, which is not true
+* Need to add tests for errors thrown
 * Make the Front-end styling a bit less bare
 
 ## Struggles
