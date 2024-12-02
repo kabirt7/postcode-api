@@ -1,7 +1,8 @@
-version: '3'
+version: "3"
 services:
   mysql:
     image: mysql:8.0
+    platform: linux/arm64/v8
     ports:
       - "3306:3306"
     environment:
@@ -9,23 +10,36 @@ services:
       MYSQL_USER: product_user
       MYSQL_PASSWORD: product_user_password
       MYSQL_DATABASE: product
+    networks:
+      - postcode-api-network
 
   spring-boot-app:
-      build:
-        context: ./Back-end
-        dockerfile: Dockerfile
-      ports:
-        - "8080:8080"
-      depends_on:
-        - mysql
-      environment:
-        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/product
-        SPRING_DATASOURCE_USERNAME: product_user
-        SPRING_DATASOURCE_PASSWORD: product_user_password
+    build:
+      context: ./Back-end
+      dockerfile: Dockerfile
+    platform: linux/arm64/v8
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/product
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_user_password
+    networks:
+      - postcode-api-network
 
   react-app:
-      build:
-        context: ./Front-end
-        dockerfile: Dockerfile
-      ports:
-       - "5173:5173"
+    build:
+      context: ./Front-end
+      dockerfile: Dockerfile
+    platform: linux/arm64/v8
+    ports:
+      - "5173:5173"
+    networks:
+      - postcode-api-network
+
+networks:
+  postcode-api-network:
+    external: true
+    name: postcode-api_postcode-api-network

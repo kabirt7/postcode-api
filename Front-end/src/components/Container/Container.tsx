@@ -1,6 +1,5 @@
 import AddDataComponent from "../AddDataComponent/AddDataComponent";
 import SearchComponent from "../SearchComponent/SearchComponent";
-import FindPostcodeComponent from "../SearchComponent/SearchComponent";
 import PortalButtons from "../PortalButtons/PortalButtons";
 import ViewDataComponent from "../ViewDataComponent/ViewDataComponent";
 import styles from "./Container.module.scss";

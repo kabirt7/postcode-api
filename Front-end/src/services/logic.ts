@@ -1,6 +1,9 @@
-import { PostcodeDataPair, Suburb } from "./interfaces.ts";
+import { PostcodeDataPair } from "./interfaces.ts";
 
-const API_URL = "http://localhost:8080/postcode";
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080/postcode"
+    : "http://spring-boot-app:8080/postcode";
 
 const apostropheStringToList = (input: string) => {
   return input.split(",").map((item) => item.trim());

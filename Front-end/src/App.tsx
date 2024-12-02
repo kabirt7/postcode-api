@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import "./App.scss";
 import Container from "./components/Container/Container";
-import ToastContextProvider, { ToastContext } from "./context/ToastContext";
-import Toast from "./components/ToastComponent/ToastComponent";
+import ToastContextProvider from "./context/ToastContext";
 
 function App() {
   return (

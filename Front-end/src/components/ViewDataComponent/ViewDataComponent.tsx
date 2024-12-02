@@ -1,8 +1,6 @@
 import styles from "./ViewDataComponent.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { deleteData, getAllData } from "../../services/logic";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { PostcodeDataPair } from "../../services/interfaces";
 import PostcodeDataItem from "../PostcodeItem.jsx/PostcodeDataItem";
 import { ToastContext } from "../../context/ToastContext";
@@ -18,7 +16,7 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
     null
   );
 
-  const { message, setMessage } = useContext(ToastContext);
+  const { setMessage } = useContext(ToastContext);
 
   const handleDeleteData = async (postcode: Number) => {
     try {
@@ -69,9 +67,7 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
                 onClick={() => {
                   handleDeleteData(item.postcodeNumber);
                 }}
-              >
-                <FontAwesomeIcon icon={faTrashCan} />
-              </button>
+              ></button>
               <PostcodeDataItem
                 key={index}
                 postcode={item.postcodeNumber}
@@ -84,9 +80,7 @@ const ViewDataComponent: React.FC<ViewDataComponentProps> = ({
         type="button"
         className={styles.viewData__button}
         onClick={closeModal}
-      >
-        <FontAwesomeIcon icon={faTimes} />
-      </button>
+      ></button>
     </>
   );
 };
