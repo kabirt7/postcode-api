@@ -10,8 +10,6 @@ services:
       MYSQL_USER: product_user
       MYSQL_PASSWORD: product_user_password
       MYSQL_DATABASE: product
-    networks:
-      - postcode-api-network
 
   spring-boot-app:
     build:
@@ -26,8 +24,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/product
       SPRING_DATASOURCE_USERNAME: product_user
       SPRING_DATASOURCE_PASSWORD: product_user_password
-    networks:
-      - postcode-api-network
 
   react-app:
     build:
@@ -36,10 +32,3 @@ services:
     platform: linux/arm64/v8
     ports:
       - "5173:5173"
-    networks:
-      - postcode-api-network
-
-networks:
-  postcode-api-network:
-    external: true
-    name: postcode-api_postcode-api-network
