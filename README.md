@@ -401,10 +401,10 @@ TO-DO:
   "postcodeNumber": 221903,
   "suburbs": [
     {
-      "suburbName": "China"
+      "suburbName": "Hillarys"
     },
     {
-      "suburbName": "India"
+      "suburbName": "Whitfords"
     }
   ]
 }
@@ -462,7 +462,7 @@ networks:
 - I needed to specify the platform that my computer uses which was 'linux/arm64/v8.' It would be better if I used an env to define this. Need to add a subheading to my README with startup config for other uses.
 
 ## 3rd December
-- I was wrong when I said it's localhost that the containers use to communicate with each other. They connect via a default network by referring to each other by the names set out in the docker-compose file
-- Hene, I removed the custom network that I added. This was redundant.
+- I was wrong when I tried to use localhost to get the containers to communicate with each other. They connect via a default network (created by Docker) and refer to each other by the names set out in the docker-compose file
+- Hence, I removed the custom network that I added. This was redundant.
 - I've exposed my ports for each layer which apps such as React and Spring Boot can be accessed via the browser
 - MySQL can be accessed locally but only using somehthing like MySQL Workbench
