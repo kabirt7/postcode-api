@@ -435,7 +435,7 @@ TMO:
 
 ## 2nd December
 - Containerised into 1 Image
-Some issues / tweaks I ran into:
+- Some issues / tweaks I ran into:
 - needed to modify the vite.config.ts to make the application listen on the required ports
 ```jsx
 export default defineConfig({
@@ -461,4 +461,8 @@ networks:
 ```
 - I needed to specify the platform that my computer uses which was 'linux/arm64/v8.' It would be better if I used an env to define this. Need to add a subheading to my README with startup config for other uses.
 
-
+## 3rd December
+- I was wrong when I said it's localhost that the containers use to communicate with each other. They connect via a default network by referring to each other by the names set out in the docker-compose file
+- Hene, I removed the custom network that I added. This was redundant.
+- I've exposed my ports for each layer which apps such as React and Spring Boot can be accessed via the browser
+- MySQL can be accessed locally but only using somehthing like MySQL Workbench
