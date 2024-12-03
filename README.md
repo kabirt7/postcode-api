@@ -464,5 +464,5 @@ networks:
 ## 3rd December
 - I was wrong when I tried to use localhost to get the containers to communicate with each other. They connect via a default network (created by Docker) and refer to each other by the names set out in the docker-compose file
 - Hence, I removed the custom network that I added. This was redundant.
-- I've exposed my ports for each layer which apps such as React and Spring Boot can be accessed via the browser
-- MySQL can be accessed locally but only using somehthing like MySQL Workbench
+- I've exposed my ports for each layer which for apps such as React and Spring Boot can be accessed via the browser
+- MySQL can be accessed locally but only using something like MySQL Workbench
