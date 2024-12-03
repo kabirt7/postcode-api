@@ -17,7 +17,11 @@
 
 ## Build Steps
 
-- Image runs on port 5173 and connects to 
+To Run Docker Image
+- adjust docker-compose.yml according to platform that computer is running
+- App runs on http://localhost:5173/
+- Sends HTTP request to http://localhost:8080/postcode
+- Which uses a database at port 3306
 
 ## Design Goals / Approach
 * Building an API which stores a suburb's name and postcode number.
@@ -36,7 +40,6 @@
     }
   ]
 ```
-API Calls:
 * GET http://{SERVER_LOCATION}:8080/postcode - returns all stored data pairings
 * GET http://{SERVER_LOCATION}:8080/postcode/number/{suburbName} - return post-code number from suburb name
 * GET http://{SERVER_LOCATION}:8080/postcode/name/{postcodeNumber} - return suburb name from post-code number
@@ -56,6 +59,7 @@ Front-end
 * Return either the suburbs associated with a postcode or vice versa through their respective tabs 
 
 ## Known issues / Future Goals
+* need to use an env to encrypt the password information
 * the Rest API URL nomenclature is incorrect for what it is. Needs to be
 ```
 GET /postcode?suburb=(name}
