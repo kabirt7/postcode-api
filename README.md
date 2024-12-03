@@ -459,6 +459,6 @@ networks:
     external: true
     name: postcode-api_postcode-api-network
 ```
-- I needed to specify the platform that my computer uses which was 'linux/arm64/v8.' It would be better if I used an env to define this. Need to add a subheading to my README  with startup config for other uses.
+- I needed to specify the platform that my computer uses which was 'linux/arm64/v8.' It would be better if I used an env to define this. Need to add a subheading to my README with startup config for other uses.
 
 
