@@ -17,10 +17,7 @@
 
 ## Build Steps
 
-- Back-end API port: 8080
-- Front-end port: 5173
-- Database:  port 3306/postcodeapi
-- Table names: postcodeapi_data and suburb
+- Image runs on port 5173 and connects to 
 
 ## Design Goals / Approach
 * Building an API which stores a suburb's name and postcode number.
@@ -28,7 +25,7 @@
 * Logical back-end structure with basic front-end
 
 ## Features
-* POST http://localhost:8080/postcode - Body must include and an Integer, "postcodeNumber" and an array, suburbs, with objects contained within for each suburb:
+* POST http://{SERVER_LOCATION}:8080/postcode - Body must include and an Integer, "postcodeNumber" and an array, suburbs, with objects contained within for each suburb:
 ```java
 "suburbs": [
     {
@@ -40,9 +37,9 @@
   ]
 ```
 API Calls:
-* GET http://localhost:8080/postcode - returns all stored data pairings
-* GET http://localhost:8080/postcode/number/{suburbName} - return post-code number from suburb name
-* GET http://localhost:8080/postcode/name/{postcodeNumber} - return suburb name from post-code number
+* GET http://{SERVER_LOCATION}:8080/postcode - returns all stored data pairings
+* GET http://{SERVER_LOCATION}:8080/postcode/number/{suburbName} - return post-code number from suburb name
+* GET http://{SERVER_LOCATION}:8080/postcode/name/{postcodeNumber} - return suburb name from post-code number
 * Each item also includes a createdAt and updatedAt Column. Automatically pre-persisted.
 
 Back-end 
