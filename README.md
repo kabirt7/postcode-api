@@ -432,4 +432,32 @@ TMO:
 TMO:
 - Finish fleshing out README with a demo.
 
+## 2nd December
+- Containerised into 1 Image
+Some issues / tweaks I ran into:
+- needed to modify the vite.config.ts to make the application listen on the required ports
+```jsx
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+  },
+});
+```
+- matching up my backend application.properties to use the defined database in the docker-compose file
+``` java
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+```
+- I tried to use localhost to allow for communication between the containers but this did't work so i introduced a netword into the docker-compose.yml
+```yml
+networks:
+  postcode-api-network:
+    external: true
+    name: postcode-api_postcode-api-network
+```
+- I needed to specify the platform that my computer uses which was 'linux/arm64/v8.' It would be better if I used an env to define this. Need to add a subheading to my README  with startup config for other uses.
+
 
